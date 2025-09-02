@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: url('https://assets.nflxext.com/ffe/siteui/vlv3/5e3d5dd6-6f67-4e5b-97d0-96dbe3c89e64/f50c86cb-893a-40c4-8191-b3bc2f9325cf/BR-pt-20230807-popsignuptwoweeks-perspective_alpha_website_small.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+
+        .overlay {
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+        }
+
+        form {
+            background: rgba(0,0,0,0.75);
+            padding: 40px;
+            border-radius: 8px;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        input {
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        button {
+            background: #e50914;
+            color: white;
+            font-size: 1rem;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #f40612;
+        }
+
+        .msg {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #ffa00a;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="content">
+        <h1>Where are?</h1>
+        <p>Acesse sua conta para continuar</p>
+        <form th:action="@{/login}" method="post">
+            <label for="username">Usuário</label>
+            <input type="text" id="username" name="username" required />
+
+            <label for="password">Senha</label>
+            <input type="password" id="password" name="password" required />
+
+            <button type="submit">Entrar</button>
+
+            <!-- Mostra erro de login -->
+            <div class="msg" th:if="${param.error}">
+                Usuário ou senha inválidos.
+            </div>
+
+            <!-- Mostra mensagem de logout -->
+            <div class="msg" th:if="${param.logout}">
+                Você saiu com sucesso.
+            </div>
+        </form>
+    </div>
+</body>
+</html>
