@@ -4,6 +4,12 @@ Sistema completo de gerenciamento de uma locadora de filmes, com operações de 
 
 ---
 
+## 📋 Descrição do Sistema
+
+Este sistema permite o gerenciamento eficiente de uma locadora de filmes, incluindo funcionalidades para cadastrar, listar, editar e remover filmes do catálogo. Possui autenticação e autorização baseadas em roles (ADMIN e USER) utilizando Spring Security com JWT. A interface web é construída com Thymeleaf, e a persistência é feita em banco de dados relacional (H2, MySQL ou PostgreSQL).
+
+---
+
 ## ✅ Funcionalidades
 
 - Cadastro de novos filmes
@@ -11,8 +17,10 @@ Sistema completo de gerenciamento de uma locadora de filmes, com operações de 
 - Busca de filme por ID
 - Edição das informações de um filme
 - Exclusão de filme do catálogo
-- Integração com banco de dados relacional
-- Interface web com Thymeleaf (Spring MVC)
+- Controle de acesso com roles (ADMIN, USER)
+- Autenticação via JWT (JSON Web Token)
+- Interface web responsiva com Thymeleaf
+- Integração com banco de dados relacional (H2, MySQL, PostgreSQL)
 
 ---
 
@@ -22,6 +30,7 @@ Sistema completo de gerenciamento de uma locadora de filmes, com operações de 
 - Spring Boot
   - Spring Web
   - Spring Data JPA
+  - Spring Security
 - Thymeleaf
 - Banco de dados: H2, MySQL ou PostgreSQL
 - Maven
@@ -36,5 +45,11 @@ Sistema completo de gerenciamento de uma locadora de filmes, com operações de 
 git clone https://github.com/seu-usuario/LocadoraCrud.git
 cd LocadoraCrud
 
-# Execute com Maven
+# Execute com Maven (Linux/Mac)
 ./mvnw spring-boot:run
+
+# Ou no Windows (PowerShell)
+mvnw.cmd spring-boot:run
+
+# Acesse no navegador
+http://localhost:8080
