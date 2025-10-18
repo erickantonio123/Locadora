@@ -6,28 +6,24 @@
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
     <style>
         body {
-            background-color: #666666; /* cinza escuro */
+            background-color: #666666; /* cinza escuro - PADRÃO */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
         }
 
         h2 {
-            background-color: #000000; /* preto */
+            background-color: #000000; /* preto - PADRÃO */
             color: white;
             padding: 20px;
             border-radius: 8px;
             text-align: center;
+            margin-bottom: 30px;
         }
 
-        .mb-4.d-flex.justify-content-center {
-            background-color: #8B4513; /* marrom */
-            padding: 20px;
-            border-radius: 8px;
-        }
-
-        .buscacontainer {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
+        .busca-container {
+            background-color: #8B4513; /* marrom - PADRÃO */
+            padding: 25px;
+            border-radius: 10px;
             margin-bottom: 30px;
         }
 
@@ -37,55 +33,108 @@
         }
 
         .card {
-            margin: 10px;
-            width: 250px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
+            margin: 15px;
+            width: 280px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+            border: none;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-body {
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .card-title {
+            color: #000000;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .card-text {
+            color: #333333;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        /* ✅ BADGES PADRONIZADOS EM CINZA */
+        .badge-genero, .badge-plataforma {
+            background-color: #666666; /* CINZA PADRÃO */
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: 5px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .info-text {
+            color: #333333;
+            font-size: 14px;
+            text-align: center;
+            padding: 5px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            background-color: #8B4513; /* marrom - PADRÃO */
+            border-color: #8B4513;
+            padding: 10px 25px;
+            font-weight: 500;
+            border-radius: 6px;
+        }
+
+        .btn-primary:hover {
+            background-color: #654321;
+            border-color: #654321;
         }
 
         .filmes-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-        }
-
-        .card:hover {
-            transform: scale(1.03);
-        }
-
-        .card-body {
-            padding: 15px;
-            background-color: white;
-            border-radius: 10px;
-        }
-
-        .btn-primary {
-            padding: 10px 20px;
-            font-weight: 500;
+            gap: 20px;
         }
 
         #resultadoBusca p {
             text-align: center;
-            color: #f8f9fa;
+            color: #ffffff;
             font-style: italic;
+            font-size: 18px;
+            margin-top: 40px;
         }
 
-        .jumbotron {
-            background-color: #000000; /* preto */
-            color: white;
+        .input-group {
+            max-width: 500px;
+            margin: 0 auto;
         }
     </style>
 </head>
 <body class="container mt-4">
-    <h2 class="text-center mb-4">Buscar Filmes</h2>
+    <h2 class="text-center">Buscar Filmes</h2>
 
     <!-- 🔍 Campo de busca -->
-    <div class="mb-4 d-flex justify-content-center">
-        <input type="text" id="campoBusca" placeholder="Digite o nome do filme"
-               class="form-control w-50 mr-2" 
-               onkeydown="if(event.key === 'Enter'){ buscarFilmes(); event.preventDefault(); }" />
-        <button class="btn btn-primary" onclick="buscarFilmes()">Buscar</button>
+    <div class="busca-container">
+        <div class="input-group">
+            <input type="text" id="campoBusca" placeholder="Digite o nome do filme..."
+                   class="form-control" 
+                   onkeydown="if(event.key === 'Enter'){ buscarFilmes(); event.preventDefault(); }" />
+            <div class="input-group-append">
+                <button class="btn btn-primary" onclick="buscarFilmes()">Buscar</button>
+            </div>
+        </div>
     </div>
 
     <!-- 🎬 Exibição em cartões -->
@@ -127,7 +176,14 @@
                         card.innerHTML = `
                             <div class="card-body">
                                 <h5 class="card-title">${filme.nome}</h5>
-                                <p class="card-text">Gênero: ${filme.genero?.nome || 'N/A'}</p>
+                                
+                                <!-- ✅ GÊNERO EM CINZA PADRÃO -->
+                                <div class="badge-genero">GÊNERO</div>
+                                <div class="info-text">${filme.genero?.nome || 'N/A'}</div>
+                                
+                                <!-- ✅ PLATAFORMA EM CINZA PADRÃO -->
+                                <div class="badge-plataforma">PLATAFORMA</div>
+                                <div class="info-text">${filme.plataforma?.nome  || 'N/A'}</div>
                             </div>
                         `;
                         container.appendChild(card);
@@ -138,6 +194,16 @@
                     console.error("Erro ao buscar filmes:", err);
                 });
         }
+
+        // Buscar automaticamente ao carregar a página se tiver parâmetro na URL
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const titulo = urlParams.get('titulo');
+            if (titulo) {
+                document.getElementById('campoBusca').value = titulo;
+                buscarFilmes();
+            }
+        });
     </script>
 </body>
 </html>

@@ -14,11 +14,13 @@ public class FilmeRestController {
 
     private final LocadoraRepository locadoraRepository;
     private final GeneroRepository generoRepository;
-
+  private final PlataformaRepository plataformaRepository;
     
-    public FilmeRestController(LocadoraRepository locadoraRepository, GeneroRepository generoRepository) {
+    public FilmeRestController(LocadoraRepository locadoraRepository, GeneroRepository generoRepository,
+     PlataformaRepository plataformaRepository) {
         this.locadoraRepository = locadoraRepository;
         this.generoRepository = generoRepository;
+        this.plataformaRepository = plataformaRepository;
     }
 
     // GET: Lista todos os filmes
@@ -39,14 +41,23 @@ public ResponseEntity<?> adicionarFilme(@Valid @RequestBody Locadora locadora) {
     if (locadora.getGenero() == null || locadora.getGenero().getId() == null) {
         return ResponseEntity.badRequest().body("Erro: Gênero deve ser informado.");
     }
+  
 
-    Optional<Genero> generoOpt = Optional.empty();
-    if (generoOpt.isEmpty()) {
-        return ResponseEntity.badRequest().body("Erro: Gênero inválido.");
+
+    Optional<Genero> generoOpt = generoRepository.findById(locadora.getGenero().getId());
+if (generoOpt.isEmpty()) {
+    return ResponseEntity.badRequest().body("Erro: Gênero inválido.");
+}
+locadora.setGenero(generoOpt.get());
+
+    if (locadora.getPlataforma() == null || locadora.getPlataforma().getId() == null) {
+        return ResponseEntity.badRequest().body("Erro: Plataforma deve ser informada.");
     }
+    Optional<Plataforma> plataformaOpt = plataformaRepository.findById(locadora.getPlataforma().getId());
+if (plataformaOpt.isEmpty()) {
+    return ResponseEntity.badRequest().body("Erro: Plataforma inválida.");
 
-    locadora.setGenero(generoOpt.get());
-
+}locadora.setPlataforma(plataformaOpt.get());
     Locadora salvo = locadoraRepository.save(locadora);
     return ResponseEntity.ok(salvo);
 }
@@ -73,6 +84,12 @@ public ResponseEntity<?> adicionarFilme(@Valid @RequestBody Locadora locadora) {
                         Genero genero = generoRepository.findByNome(locadora.getGenero().getNome())
                                 .orElseGet(() -> generoRepository.save(new Genero(locadora.getGenero().getNome())));
                         filmeExistente.setGenero(genero);
+                    }
+
+      if (locadora.getPlataforma() != null && locadora.getPlataforma().getNome() != null) {
+                        Plataforma plataforma = plataformaRepository.findByNome(locadora.getPlataforma().getNome())
+                                .orElseGet(() -> plataformaRepository.save(new Plataforma(locadora.getPlataforma().getNome())));
+                        filmeExistente.setPlataforma(plataforma);
                     }
 
                     Locadora atualizado = locadoraRepository.save(filmeExistente);

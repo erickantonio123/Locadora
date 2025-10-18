@@ -1,5 +1,8 @@
 package com.LocadoraFilmes;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -7,18 +10,24 @@ import org.springframework.stereotype.Component;
 public class DataLoader implements CommandLineRunner {
 
     private final GeneroRepository generoRepository;
+    private final PlataformaRepository plataformaRepository;
     private final RollsRepository rollsRepository;
     private final UsuarioRepository usuarioRepository;
+    private final LocadoraRepository locadoraRepository;
     private final org.springframework.security.crypto.password.PasswordEncoder passwordEncoder;
 
     public DataLoader(GeneroRepository generoRepository,
                       RollsRepository rollsRepository,
                       UsuarioRepository usuarioRepository,
+                     LocadoraRepository locadoraRepository,
+                     PlataformaRepository plataformaRepository,
                       org.springframework.security.crypto.password.PasswordEncoder passwordEncoder) {
         this.generoRepository = generoRepository;
         this.rollsRepository = rollsRepository;
         this.usuarioRepository = usuarioRepository;
         this.passwordEncoder = passwordEncoder;
+        this.locadoraRepository = locadoraRepository;
+        this.plataformaRepository = plataformaRepository;
     }
 
     @Override
@@ -30,6 +39,30 @@ public class DataLoader implements CommandLineRunner {
                 generoRepository.save(new Genero(nomeGenero));
             }
         }
+
+   java.util.List<String> plataformas = java.util.List.of("Disney+", "Netflix", "Amazon Prime", "HBO Max", "Star plus", "Apple TV", "Paramount+", "Globoplay");
+for (String nomePlataforma : plataformas) {
+        if (plataformaRepository.findByNome(nomePlataforma).isEmpty()) {
+            Plataforma plataforma = new Plataforma(nomePlataforma);
+            plataformaRepository.save(plataforma);
+            System.out.println("✅ Plataforma criada: " + nomePlataforma);
+        }
+    }
+        /* if (plataformaRepository.findByNome(nomePlataforma).isEmpty()) {
+            Plataforma plataforma = new Plataforma(nomePlataforma);
+            plataformaRepository.save(plataforma);
+            System.out.println("✅ Plataforma criada: " + nomePlataforma);
+        }
+        */
+    
+
+System.out.println("=== PLATAFORMAS NO BANCO ===");
+plataformaRepository.findAll().forEach(plat -> {
+    System.out.println("ID: " + plat.getId() + " | Nome: " + plat.getNome());
+});
+
+
+// Salva somente se não tiver nenhum filme cadastrado
 
         // Roles
         Role roleUser = rollsRepository.findByNome("ROLE_USER")
@@ -53,6 +86,9 @@ if (usuarioRepository.findByUsername("cliente").isEmpty()) {
         System.out.println("✅ Usuário criado com role USER");
     }
     }
+
+
+    
 
 
     
