@@ -6,21 +6,26 @@
     <link rel="stylesheet" 
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+        body {
+            background-color: #666666; /* fundo cinza escuro */
+        }
+
         .me-3 {
             margin-right: 1rem;
         }
-   /* Parte superior preta */
-    .jumbotron {
-        background-color: #000000; /* preto */
-        color: white;
-    }
-     form.container {
-        background-color: #8B4513; /* marrom */
-        padding: 20px;
-        border-radius: 10px;
-        color: white;
-    }
 
+        /* Slide preto */
+        .jumbotron {
+            background-color: #000000; /* preto */
+            color: #FFFFFF; /* texto branco */
+        }
+
+        form.container {
+            background-color: #8B4513; /* marrom */
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+        }
     </style>
 </head>
 
@@ -31,6 +36,7 @@
         <h1> Gerenciamento da Locadora </h1>
     </div>
 </div>
+
 <form th:action="@{/logout}" method="post" style="display:inline;">
     <button type="submit" class="btn-link" style="border:none;background:none;color:blue;cursor:pointer;">
         Sair
@@ -48,16 +54,16 @@
         <div class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
     </div>
 
-  <div class="form-group w-25">
-    <label for="genero">Gênero:</label>
-    <select th:field="*{genero.id}" class="form-control" id="genero">
-        <option value="" disabled selected>Selecione um gênero</option>
-        <option th:each="g : ${listaGeneros}"
-                th:value="${g.id}"
-                th:text="${g.nome}">
-        </option>
-    </select>
-</div>
+    <div class="form-group w-25">
+        <label for="genero">Gênero:</label>
+        <select th:field="*{genero.id}" class="form-control" id="genero">
+            <option value="" disabled selected>Selecione um gênero</option>
+            <option th:each="g : ${listaGeneros}"
+                    th:value="${g.id}"
+                    th:text="${g.nome}">
+            </option>
+        </select>
+    </div>
 
     <button type="submit" class="btn btn-primary" 
             th:text="${locadorat.id} != null ? 'Salvar Alterações' : 'Adicionar Filme'">

@@ -5,76 +5,76 @@
     <title>Buscar Filmes</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
     <style>
-         body{
-            background-color: #f8f9fa;
-            font-family: 'Segoe UI',tahoma,geneva,verdana,sans-serif;
-         }   
+        body {
+            background-color: #666666; /* cinza escuro */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
         h2 {
-    background-color: #000; /* preto */
-    color: white;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-}
-.mb-4.d-flex.justify-content-center {
-    background-color: #8B4513; /* marrom */
-    padding: 20px;
-    border-radius: 8px;
-}
-         .buscacontainer{
+            background-color: #000000; /* preto */
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .mb-4.d-flex.justify-content-center {
+            background-color: #8B4513; /* marrom */
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .buscacontainer {
             display: flex;
             justify-content: center;
             gap: 10px;
             margin-bottom: 30px;
-         }
-            .form-control {
+        }
+
+        .form-control {
             max-width: 400px;
             min-width: 250px;
-        }   
+        }
 
-           .card {
+        .card {
             margin: 10px;
             width: 250px;
             border-radius: 10px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s;
         }
+
         .filmes-container {
             display: flex;
-            flex-wrap: wrap;    
+            flex-wrap: wrap;
             justify-content: center;
         }
-   .card {
-            margin: 10px;
-            width: 250px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
-        }
 
-         .card:hover {
+        .card:hover {
             transform: scale(1.03);
         }
-         .card-body {
+
+        .card-body {
             padding: 15px;
             background-color: white;
             border-radius: 10px;
         }
- .btn-primary {
+
+        .btn-primary {
             padding: 10px 20px;
             font-weight: 500;
         }
-          #resultadoBusca p {
+
+        #resultadoBusca p {
             text-align: center;
-            color: #6c757d;
+            color: #f8f9fa;
             font-style: italic;
         }
-  .jumbotron {
-        background-color: #000000; /* preto */
-        color: white;
-    }
 
-
+        .jumbotron {
+            background-color: #000000; /* preto */
+            color: white;
+        }
     </style>
 </head>
 <body class="container mt-4">
@@ -98,7 +98,7 @@
         function buscarFilmes() {
             const nome = document.getElementById("campoBusca").value.trim();
             const container = document.getElementById("resultadoBusca");
-            
+
             if (nome === "") {
                 container.innerHTML = "<p>Por favor, digite um nome para buscar.</p>";
                 return;
