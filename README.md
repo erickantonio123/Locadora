@@ -1,12 +1,5 @@
 🎬 Sistema de Locadora - Spring Boot & Java
-<div align="center">
-https://img.shields.io/badge/Java-17+-red
-https://img.shields.io/badge/Spring%2520Boot-3.x-green
-https://img.shields.io/badge/Spring%2520Security-JWT-blue
-https://img.shields.io/badge/Database-Oracle%2520XE-orange
-https://img.shields.io/badge/License-MIT-yellow
 
-</div>
 
 Sistema completo de gerenciamento para locadora de filmes desenvolvido em Java Spring Boot com arquitetura moderna, segurança robusta e interface responsiva.
 
