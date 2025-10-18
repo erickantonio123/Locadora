@@ -1,84 +1,195 @@
-# 🎬 Sistema de Locadora
+🎬 Sistema de Locadora - Spring Boot & Java
 
-Sistema completo de gerenciamento para locadora de filmes desenvolvido em Java Spring Boot.
 
-## 🚀 Tecnologias Utilizadas
+https://img.shields.io/badge/Java-17+-red?logo=java
+https://img.shields.io/badge/Spring%2520Boot-3.x-green?logo=spring
+https://img.shields.io/badge/Spring%2520Security-JWT-blue
+https://img.shields.io/badge/Database-Oracle%2520XE-orange
 
-- **Java 17+**
-- **Spring Boot 3.x**
-- **Spring Data JPA**
-- **Maven**
-- **H2 Database** (desenvolvimento)
-- **MySQL** (produção)
 
-## 📁 Estrutura do Projeto
+
+
+
+Sistema completo de gerenciamento para locadora de filmes desenvolvido em Java Spring Boot com arquitetura moderna, segurança robusta e interface responsiva.
+
+🚀 Tecnologias Utilizadas
+Backend
+
+Java 17+ – Linguagem principal
+
+Spring Boot 3.x – Framework principal
+
+Spring Security – Autenticação e autorização
+
+Spring Data JPA – Persistência de dados
+
+JWT – Tokens de autenticação
+
+Hibernate – ORM
+
+Maven – Gerenciamento de dependências
+
+Frontend
+
+Thymeleaf – Template engine
+
+Bootstrap 4 – Interface responsiva
+
+HTML5/CSS3 – Estrutura e estilização
+
+JavaScript – Interatividade
+
+Banco de Dados
+
+Oracle XE – Banco de dados principal
+
+JPA/Hibernate – Mapeamento objeto-relacional
+
+Segurança
+
+Spring Security com JWT
+
+BCrypt para hash de senhas
+
+Role-based Authorization (ADMIN, USER)
+
+CSRF Protection
+
+📁 Arquitetura do Projeto
 Locadora/
-├── src/
-│ └── main/
-│ └── java/
-│ └── com/
-│ └── locadora/
-│ ├── controller/ # Controladores REST
-│ ├── model/ # Entidades JPA
-│ ├── repository/ # Interfaces de dados
-│ ├── service/ # Lógica de negócio
-│ └── config/ # Configurações
+├── src/main/java/com/LocadoraFilmes/
+│   ├── controller/          # Controladores MVC e REST
+│   ├── model/               # Entidades JPA
+│   ├── repository/          # Interfaces Spring Data JPA
+│   ├── service/             # Lógica de negócio
+│   └── config/              # Configurações do Spring Security, JWT e handlers
 ├── src/main/resources/
-│ ├── application.properties
-│ └── data.sql # Dados iniciais
+│   ├── templates/           # Páginas Thymeleaf
+│   ├── static/css/          # Recursos estáticos
+│   └── application.properties
 └── pom.xml
 
-text
+🎯 Funcionalidades Principais
+🎥 Gestão de Catálogo
 
-## 🎯 Funcionalidades
+Cadastro completo de filmes
 
-### 📊 Gestão de Catálogo
-- Cadastro de filmes
-- Controle de gêneros
-- Gestão de plataformas (Netflix, Amazon Prime, Disney+, etc.)
-- Classificação etária
+Controle de gêneros (Ação, Comédia, Drama, Terror, Romance, Suspense, Ficção)
 
-### 🔄 Operações de Locação
-- Aluguel de filmes
-- Devolução
-- Histórico de locações
-- Controle de disponibilidade por plataforma
+Gestão de plataformas (Netflix, Amazon Prime, Disney+, HBO Max etc.)
 
-### 👥 Gestão de Clientes
-- Cadastro de clientes
-- Histórico de locações
-- Preferências por gênero e plataforma
+Validação de dados com Bean Validation
 
-## 🏗️ Modelo de Dados
+Busca avançada com paginação
 
-### Principais Entidades:
+🔐 Sistema de Autenticação
 
-- **Filme**: Informações dos filmes (título, diretor, ano, duração, plataforma)
-- **Gênero**: Categorias de filmes (Ação, Comédia, Drama, etc.)
-- **Plataforma**: Streaming disponível (Netflix, Amazon Prime, Disney+, HBO Max, etc.)
-- **Cliente**: Dados dos clientes da locadora
-- **Locação**: Registro de aluguéis e devoluções
+Login seguro com JWT
 
-## 🎥 Plataformas Suportadas
+Autorização baseada em roles (ROLE_ADMIN, ROLE_USER)
 
-- **Netflix**
-- **Amazon Prime Video**
-- **Disney+**
-- **HBO Max**
-- **Apple TV+**
-- **Paramount+**
-- **Star+**
-- **Globoplay**
+Senhas criptografadas com BCrypt
 
-## 🚀 Como Executar
+Redirecionamento inteligente pós-login
 
-### Pré-requisitos
-- Java 17 ou superior
-- Maven 3.6+
-- MySQL (opcional para produção)
+Proteção CSRF
 
-### Execução Local
-```bash
+👥 Gestão de Usuários
+
+Cadastro de usuários com roles
+
+Admin: Acesso completo (CRUD)
+
+User: Apenas consulta e busca
+
+Sessões seguras com JWT
+
+🔄 Operações CRUD Completas
+
+Create, Read, Update, Delete de filmes com validação e segurança
+
+🌐 API RESTful
+
+Endpoints REST para integração
+
+JSON responses padronizadas
+
+Tratamento global de exceções
+
+Validação de payloads
+
+🏗️ Modelo de Dados
+
+Locadora (Filme)
+
+Long id;
+String nome;
+Genero genero;
+Plataforma plataforma;
+
+
+Genero
+
+Long id;
+String nome;
+List<Locadora> filmes;
+
+
+Plataforma
+
+Long id;
+String nome;
+List<Locadora> filmes;
+
+
+Usuario
+
+Long id;
+String username;
+String senha;
+Set<Role> roles;
+
+
+Role
+
+Long id;
+String nome; // ROLE_ADMIN, ROLE_USER
+
+🎥 Plataformas Suportadas
+
+Netflix
+
+Amazon Prime Video
+
+Disney+
+
+HBO Max
+
+Star+
+
+Apple TV+
+
+Paramount+
+
+Globoplay
+
+🔧 Configuração e Execução
+Pré-requisitos
+
+Java 17 ou superior
+
+Maven 3.6+
+
+Oracle Database XE
+
+Configuração do Banco
+# application.properties
+spring.datasource.url=jdbc:oracle:thin:@//localhost:1521/XEPDB1
+spring.datasource.username=locadora
+spring.datasource.password=senha123
+spring.jpa.hibernate.ddl-auto=update
+
+Execução
 # Clone o repositório
 git clone https://github.com/erickantonio123/Locadora.git
 
@@ -87,78 +198,122 @@ cd Locadora
 
 # Execute a aplicação
 mvn spring-boot:run
-Configuração
-properties
-# application.properties
-spring.datasource.url=jdbc:h2:mem:locadora
-spring.datasource.username=sa
-spring.datasource.password=
-spring.jpa.hibernate.ddl-auto=create-drop
-📚 API Endpoints
-Filmes
-GET /api/filmes - Lista todos os filmes
 
-POST /api/filmes - Cadastra novo filme
+Acesso
 
-GET /api/filmes/{id} - Busca filme por ID
+Aplicação: http://localhost:8080
 
-PUT /api/filmes/{id} - Atualiza filme
+Login Admin: admin / 123456
 
-GET /api/filmes/platform/{plataforma} - Busca filmes por plataforma
+Login User: cliente / 123456
 
-Clientes
-GET /api/clientes - Lista clientes
+📚 Endpoints da API
+Autenticação
 
-POST /api/clientes - Cadastra cliente
+POST /Top/login – Login com JWT
 
-Locações
-POST /api/locacoes/alugar - Realiza locação
+POST /Top/register – Registrar novo usuário
 
-POST /api/locacoes/devolver - Registra devolução
+Filmes (REST API)
 
-GET /api/locacoes/cliente/{id} - Histórico de locações do cliente
+GET /api/filmes – Listar todos os filmes
 
-Plataformas
-GET /api/plataformas - Lista todas as plataformas
+POST /api/filmes – Adicionar novo filme
 
-POST /api/plataformas - Cadastra nova plataforma
+PUT /api/filmes/{id} – Atualizar filme
 
-🗃️ Banco de Dados
-Desenvolvimento
-H2 Database (em memória)
+DELETE /api/filmes/{id} – Excluir filme
 
-Acesso console: http://localhost:8080/h2-console
+GET /api/filmes/buscar?nome={nome} – Buscar por nome
 
-Produção
-MySQL configurável
+Interface Web
 
-Scripts DDL automáticos
+GET / – Página principal (Admin)
 
-🔧 Desenvolvimento
-Compilar projeto
-bash
-mvn clean compile
-Executar testes
-bash
-mvn test
-Gerar pacote
-bash
-mvn clean package
-👥 Desenvolvedor
+GET /buscarfilmes – Página de busca (User)
+
+GET /login – Página de login
+
+🛡️ Características de Segurança
+
+Autenticação JWT
+
+Controle de Acesso baseado em roles
+
+Redirecionamento Inteligente após login
+
+Proteção CSRF
+
+BCrypt para senhas
+
+🎨 Interface do Usuário
+Página de Login
+
+Estilo Netflix com overlay escuro
+
+Background cinematográfico
+
+Validação em tempo real
+
+Dashboard Administrativo
+
+Tabela responsiva de filmes
+
+Formulários CRUD com validação
+
+Navegação intuitiva
+
+Página de Busca
+
+Cartões responsivos
+
+Busca em tempo real via AJAX
+
+Filtros por gênero e plataforma
+
+🔥 Destaques Técnicos
+
+Arquitetura Limpa – MVC, DI, separação de concerns
+
+Tratamento de Erros Global – @RestControllerAdvice
+
+Validação Robusta – @NotBlank, @Size
+
+Paginação e Performance – Pageable + Sort
+
+Segurança Avançada – JWT, Role-based, CSRF, BCrypt
+
+🚀 Como Contribuir
+
+Fork o repositório
+
+Crie uma branch: git checkout -b feature/nova-funcionalidade
+
+Commit suas mudanças: git commit -m 'Adiciona nova funcionalidade'
+
+Push para a branch: git push origin feature/nova-funcionalidade
+
+Abra um Pull Request
+
+👨‍💻 Desenvolvedor
+
 Erick Antonio
-https://img.shields.io/badge/GitHub-erickantonio123-blue
+
+
+
 
 📄 Licença
+
 Este projeto está sob a licença MIT. Veja o arquivo LICENSE para detalhes.
 
-⭐ Se este projeto foi útil, deixe uma estrela no repositório!
+⭐ Habilidades Demonstradas
 
-text
+Backend: Spring Boot 3.x, Spring Security, JPA/Hibernate, REST APIs, JWT, Oracle Database
 
-## 🎯 Melhorias adicionadas:
+Frontend: Thymeleaf, Bootstrap, JavaScript, HTML5/CSS3, Responsive Design
 
-1. **🎥 Seção específica de "Plataformas Suportadas"**
-2. **📋 Lista completa das principais streamings**
-3. **🔍 Endpoint específico para buscar filmes por plataforma**
-4. **📊 Gestão de plataformas na API**
-5. **👥 Preferências por plataforma nos clientes**
+Arquitetura: MVC Pattern, Dependency Injection, Exception Handling, Data Validation, Security Implementation
+
+DevOps & Tools: Maven, Git, Oracle XE, Bean Validation, Pagination, Filter Chains
+
+Disponível para oportunidades como Desenvolvedor Java Spring Boot! 🚀
