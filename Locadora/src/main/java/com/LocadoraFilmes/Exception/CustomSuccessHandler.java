@@ -1,4 +1,4 @@
-package com.LocadoraFilmes;
+package com.LocadoraFilmes.Exception;
 
 import java.io.IOException;
 import java.util.Set;

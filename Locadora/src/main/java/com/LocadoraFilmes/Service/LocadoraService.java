@@ -1,5 +1,10 @@
-package com.LocadoraFilmes;
+package com.LocadoraFilmes.Service;
 import org.springframework.stereotype.Service;
+
+import com.LocadoraFilmes.Repository.GeneroRepository;
+import com.LocadoraFilmes.Repository.LocadoraRepository;
+import com.LocadoraFilmes.model.Genero;
+import com.LocadoraFilmes.model.Locadora;
 
 
 @Service

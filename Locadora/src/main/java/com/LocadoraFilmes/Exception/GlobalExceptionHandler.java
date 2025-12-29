@@ -1,4 +1,4 @@
-package com.LocadoraFilmes;
+package com.LocadoraFilmes.Exception;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

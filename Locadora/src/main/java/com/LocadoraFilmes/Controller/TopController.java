@@ -1,5 +1,5 @@
 
-package com.LocadoraFilmes;
+package com.LocadoraFilmes.Controller;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +9,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.LocadoraFilmes.Repository.RollsRepository;
+import com.LocadoraFilmes.Repository.UsuarioRepository;
+import com.LocadoraFilmes.Security.JwtUtil;
+import com.LocadoraFilmes.dto.LoginRequest;
+import com.LocadoraFilmes.dto.RegisterRequest;
+import com.LocadoraFilmes.model.Usuario;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.security.core.AuthenticationException;
 

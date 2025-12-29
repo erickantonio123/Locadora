@@ -1,4 +1,4 @@
-package com.LocadoraFilmes;
+package com.LocadoraFilmes.Controller;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +14,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.LocadoraFilmes.Repository.GeneroRepository;
+import com.LocadoraFilmes.Repository.LocadoraRepository;
+import com.LocadoraFilmes.Repository.PlataformaRepository;
+import com.LocadoraFilmes.Service.LocadoraService;
+import com.LocadoraFilmes.model.Genero;
+import com.LocadoraFilmes.model.Locadora;
+import com.LocadoraFilmes.model.Plataforma;
 
 import jakarta.validation.Valid;
 

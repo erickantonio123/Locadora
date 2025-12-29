@@ -1,4 +1,4 @@
-package com.LocadoraFilmes;
+package com.LocadoraFilmes.model;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

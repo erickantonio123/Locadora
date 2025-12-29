@@ -1,8 +1,15 @@
-package com.LocadoraFilmes;
+package com.LocadoraFilmes.Controller;
 
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.LocadoraFilmes.Repository.GeneroRepository;
+import com.LocadoraFilmes.Repository.LocadoraRepository;
+import com.LocadoraFilmes.Repository.PlataformaRepository;
+import com.LocadoraFilmes.model.Genero;
+import com.LocadoraFilmes.model.Locadora;
+import com.LocadoraFilmes.model.Plataforma;
 
 import jakarta.validation.Valid;
 import java.util.Optional;

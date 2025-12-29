@@ -1,4 +1,4 @@
-package com.LocadoraFilmes;
+package com.LocadoraFilmes.dto;
 
 public class LoginRequest {
     

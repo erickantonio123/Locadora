@@ -6,6 +6,16 @@ import java.util.List;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import com.LocadoraFilmes.Repository.GeneroRepository;
+import com.LocadoraFilmes.Repository.LocadoraRepository;
+import com.LocadoraFilmes.Repository.PlataformaRepository;
+import com.LocadoraFilmes.Repository.RollsRepository;
+import com.LocadoraFilmes.Repository.UsuarioRepository;
+import com.LocadoraFilmes.model.Genero;
+import com.LocadoraFilmes.model.Plataforma;
+import com.LocadoraFilmes.model.Role;
+import com.LocadoraFilmes.model.Usuario;
+
 @Component
 public class DataLoader implements CommandLineRunner {
 

@@ -1,4 +1,4 @@
-package com.LocadoraFilmes;
+package com.LocadoraFilmes.model;
 import jakarta.persistence.*;
 import java.util.Objects;
 

@@ -1,9 +1,10 @@
-package com.LocadoraFilmes;
+package com.LocadoraFilmes.model;
 
 import java.util.HashSet;
 import java.util.Set;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import jakarta.persistence.Id;
 
 import jakarta.persistence.GeneratedValue;

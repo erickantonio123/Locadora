@@ -1,4 +1,4 @@
-package com.LocadoraFilmes;
+package com.LocadoraFilmes.Security;
 
 import io.jsonwebtoken.*;
 import org.springframework.security.core.GrantedAuthority;
