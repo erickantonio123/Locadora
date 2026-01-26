@@ -54,6 +54,8 @@ public class LocadoraController {
         memoria.addAttribute("listaPlataformas", plataformaRepository.findAll());// objeto para preencher o formulário
         return "index";
     }
+
+    
 @PostMapping("/adicionar")
 public String adicionar(@Valid @ModelAttribute("locadorat") Locadora locadorat, BindingResult result,
         Model memoria) {    
